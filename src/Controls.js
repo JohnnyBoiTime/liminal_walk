@@ -26,6 +26,14 @@ export default class Controls {
     // Pressing down moves camera
     handleKeyDown(event) {
         switch(event.code) {
+            case 'KeyP':
+                if (this.controls.isLocked) {
+                    this.controls.unlock();
+                }
+                else {
+                    this.controls.lock();
+                }
+            break;
             case 'KeyW':
                 this.moving.forward = true;
                 break;

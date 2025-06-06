@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import Controls from './Controls';
+import Environment from './Environment';
 import { PointerLockControls } from 'three/examples/jsm/controls/PointerLockControls.js';
 
 export default class App {
@@ -19,6 +20,8 @@ export default class App {
     this._SetupCamera();
 
     this._SetupControls();
+
+    this.environment = new Environment(this.scene);
 
     this.inputController = new Controls(this.controls, this.camera);
 
@@ -83,7 +86,7 @@ export default class App {
       this.camera.aspect = width / height;
       this.camera.updateProjectionMatrix();
       this.renderer.setSize(width, height);
-      this.labelRenderer.setSize(width, height);
+      //this.labelRenderer.setSize(width, height);
     })
   }
 
@@ -96,11 +99,10 @@ export default class App {
   _Animate() {
     const delta = this.clock.getDelta();
 
-
     this.inputController.update(delta, this.camera);
 
     this.renderer.render(this.scene, this.camera);
-
+    
     requestAnimationFrame(() => this._Animate());
   }
 }
