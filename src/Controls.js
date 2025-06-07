@@ -102,5 +102,9 @@ export default class Controls {
                 this.speed * delta
             );
         }
+
+        this.controls.getObject().position.y = 10;
     }
- }
+}
+
+    

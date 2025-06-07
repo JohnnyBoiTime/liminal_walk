@@ -69,8 +69,10 @@ export default class App {
 
   // Setup for the controls of the simulation
   _SetupControls() {
+    const EYE_HEIGHT = 10; // Lock player to the plane
     this.controls = new PointerLockControls(this.camera, this.renderer.domElement);
     const wrapper = this.controls.getObject();
+    wrapper.position.set(0, EYE_HEIGHT, 0);
     this.scene.add(wrapper);
     this._RegisterInputEvents();
     // this._SetUpDomElements();
