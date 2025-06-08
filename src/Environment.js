@@ -1,8 +1,11 @@
 import * as THREE from 'three';
+import { TextureLoader, EquirectangularReflectionMapping,  } from 'three';
+import heaven from './textures/sky.jpg'
 
 export default class Environment {
     constructor(scene) {
         this.scene = scene;
+        this._SetupBackground();
         this._SetupLights();
         this._SetupGround();
 
@@ -30,6 +33,16 @@ export default class Environment {
         ground.rotation.x = -Math.PI / 2;
         ground.receiveShadow = true;
         this.scene.add(ground);
+    }
+
+    // Set up the heavenly background
+    _SetupBackground() {
+         new TextureLoader().load(heaven, (texture) => {
+            texture.encoding = THREE.sRGBEncoding;
+            texture.mapping = EquirectangularReflectionMapping;
+            this.scene.background = texture;
+        });
+
     }
 
 
